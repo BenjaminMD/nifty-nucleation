@@ -1,0 +1,33 @@
+title = "DefaultParams"
+
+[metadata]
+description = "Simulation configuration"
+
+# Initial concentrations of reactants and products
+[conc]
+"Au+" = 1.0  # mol/m^3 (gold ion)
+"B" = 1.0  # mol/m^3
+
+# Saturation constants used in the simulation
+[const]
+max_cohorts = 100  # number of simulation steps
+rho = 19.3e6  # g/m^3 (bulk density of gold)
+M = 196.9  # g/mol (molar mass of gold)
+eta = 0.55  # mPa*s (viscosity of toluene)
+T = 295.0  # K (temperature)
+Au_sat = 5e-6  # mol/m^3 (saturation concentration of gold)
+gamma = 245.0  # mN/m (surface tension of toluene)
+
+# Rate constants used in the simulation
+[rate_const]
+agg = 1e-3  # m^3/mol/s (aggregation rate)
+gr = 5e-4  # m/s (growth rate)
+k1 = 3e-4  # mol/m^3/s (reaction rate)
+
+# Simulation parameters
+[sim_params]
+max_step = 1e6  # s (maximum time step)
+t0 = 0.0  # s (start time)
+t_bound = 3e4  # s (end time)
+rtol = 1e-4  # (relative tolerance)
+atol = 1e-9  # (absolute tolerance)
