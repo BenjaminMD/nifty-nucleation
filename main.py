@@ -14,8 +14,9 @@ def main():
     model = NucleationGrowthModel(config)
     
     agg_sol = solve_agg(**config['rate_const'], **config['sim_params']).sol
-    results = solve_nuc_gr_agg(model, config, agg_sol)
-    model.__init__(config)
+    for _ in range(10):
+        results = solve_nuc_gr_agg(model, config, agg_sol)
+        model.__init__(config)
     
     save_results(results, model, config)
 

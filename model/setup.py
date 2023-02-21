@@ -25,8 +25,8 @@ class Setup():
                 't', 'S', 
                 *self.species[:-1],
                 *[f'grown{i}' for i in range(self.max_cohorts*5)],
-                *[f'P{i}' for i in range(self.max_cohorts*5)],
                 *[f'R{i}' for i in range(self.max_cohorts*5)],
+                *[f'P{i}' for i in range(self.max_cohorts*5)],
                 )
 
     def zeros(self):
