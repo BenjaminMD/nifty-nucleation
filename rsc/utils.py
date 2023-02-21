@@ -25,7 +25,7 @@ def save_results(data, model, config):
         toml.dump(config, f)
 
 def read_results(h5_file_path):
-    with h5py.File('data.h5', 'r') as f:
+    with h5py.File(h5_file_path, 'r') as f:
         data = f['data'][:]
         columns = f['columns'][:]
     df = pd.DataFrame(data=data, columns=[c.decode('utf-8') for c in columns])

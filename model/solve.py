@@ -20,7 +20,7 @@ def solve_nuc_gr_agg(model, config, agg_sol=None):
         model.var['t_nuc'][model.J] = ode.t
         model.prev['R'] = model.var['R'].copy()
         model.prev['P'] = model.var['P'].copy()
-        model.prev['Au0_gr'] = np.array(model.ddt['Au0_gr']).copy()
+        model.prev['grown'] = np.array(model.ddt['grown']).copy()
 
 
         paramavg = {
@@ -32,7 +32,7 @@ def solve_nuc_gr_agg(model, config, agg_sol=None):
         # ---- Aggregation ----
         
         model.J += 1 if model.var['P'][model.J] > 1e-14 else 0
-        if model.J == config['const']['steps']: break
+        if model.J == config['const']['max_cohorts']: break
 
         data.append([
             ode.t, model.var['S'], *ode.y, *model.var['R'], *model.var['P']

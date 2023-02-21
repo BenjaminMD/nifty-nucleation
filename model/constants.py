@@ -11,9 +11,11 @@ class Constants():
         self.eta = constants['eta']
         self.T = constants['T']
         self.gamma = constants['gamma']
-        self.Au_sat = constants['Au_sat']
+        self.active_sat = constants['active_sat']
         
         rate_constants = config['rate_const']
+        self.a = rate_constants['a']
+        self.b = rate_constants['b']
         self.k1 = rate_constants['k1']
         self.k_gr = rate_constants['gr']
         self.k_agg = rate_constants['agg']

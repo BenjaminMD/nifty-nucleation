@@ -1,8 +1,26 @@
 import numpy as np
 
+def ahrrenius(A0, EA, K):
+    return     
+
+
+def temperature_dependance(t ,var):
+    act = config['activation']
+
+    k1 = act['k_10'] * np.exp(- act['E_1'] / (K.R * T))
+    k_agg = act['k_agg0'] * np.exp(- act['E_agg'] / (K.R * T))
+    k_gr = act['k_gr0'] * np.exp(- act['E_gr'] / (K.R * T))
+    active_sat = act['k_sol0'] * np.exp(- act['E_sol'] / (K.R * T))
+
+    self.Beta = 4 * self.k * self.T / (9 * self.eta * self.v_m)
+    self.R_cap = 2 * self.gamma * self.v_m / (self.k * self.T)
+    self.dG = (16 * pi * self.gamma**3 * self.v_m**2) / (self.k**3 * self.T**3)
+    self.D = (self.k * self.T) / (6 * pi * self.eta * self.R_0)
+    self.A_gr = 4 * pi * self.D * N_A
+
 
 def calc_nuc_rate(K, var, c):
-    var['S'] = c['Au0'] / K.Au_sat
+    var['S'] = c['active'] / K.active_sat
 
     if var['S'] < 1:
         var['k_nuc'], var['V_nuc'], var['R_nuc'] = 0, 0, 0
@@ -29,7 +47,7 @@ def calc_growth_rate(prev, K, J, c, var):
 
     cnd = var['P'] > 0
     var['V'][cnd] = (4 * np.pi / 3) * prev['R'][cnd]**3
-    var['V'][cnd] += prev['Au0_gr'][cnd] * K.v_m / var['P'][cnd]
+    var['V'][cnd] += prev['grown'][cnd] * K.v_m / var['P'][cnd]
     cnd = cnd & (var['V'] > 0)
     var['R'][cnd] = (3 / (4 * np.pi) * var['V'][cnd])**(1/3)
 
@@ -43,7 +61,7 @@ def calc_growth_rate(prev, K, J, c, var):
     var['k_gr'][cnd] *= K.A_gr * var['R'][cnd] * var['P'][cnd]
 
     if var['S'] > 1 and var['R_nuc'] > 0:
-        var['P'][J] = var['k_nuc'] * c['Au0']
+        var['P'][J] = var['k_nuc'] * c['active']
         var['P'][J] *= K.v_m / var['V_nuc']
         var['P_nuc'][J] = var['P'][J]
         var['R'][J] = var['R_nuc'] if var['P'][J] > 0 else 0

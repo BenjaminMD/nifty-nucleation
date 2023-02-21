@@ -5,8 +5,7 @@ description = "Simulation configuration"
 
 # Initial concentrations of reactants and products
 [conc]
-"Au+" = 1.0  # mol/m^3 (gold ion)
-"B" = 1.0  # mol/m^3
+initial = 1.0  # mol/m^3 (gold ion)
 
 # Saturation constants used in the simulation
 [const]
@@ -15,14 +14,30 @@ rho = 19.3e6  # g/m^3 (bulk density of gold)
 M = 196.9  # g/mol (molar mass of gold)
 eta = 0.55  # mPa*s (viscosity of toluene)
 T = 295.0  # K (temperature)
-Au_sat = 5e-6  # mol/m^3 (saturation concentration of gold)
+active_sat = 5e-6  # mol/m^3 (saturation concentration of gold)
 gamma = 245.0  # mN/m (surface tension of toluene)
+
+
+# Activation energies and pre-exponential factors
+[activation]
+E_sol = 20 # Activation energy for solubility / kJ/mol
+k_sol0 = 1e-7
+k_agg0 = 1e12 # Pre-exponential factor for aggregation reaction / s^-1
+E_agg = 110.0 # Activation energy for aggregation reaction / kJ/mol
+k_gr0 = 5.8e4 # Pre-exponential factor for growth reaction / s^-1
+E_gr = 110.0 # Activation energy for growth reaction / kJ/mol
+k_10 = 3.0e5 # Pre-exponential factor for reaction rate / s^-1
+E_1 = 95.0 # Activation energy for reaction rate / kJ/mol
+
+
 
 # Rate constants used in the simulation
 [rate_const]
 agg = 1e-3  # m^3/mol/s (aggregation rate)
 gr = 5e-4  # m/s (growth rate)
 k1 = 3e-4  # mol/m^3/s (reaction rate)
+a = 1e-3
+b = 1e-2
 
 # Simulation parameters
 [sim_params]
