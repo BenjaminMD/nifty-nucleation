@@ -20,7 +20,7 @@ def solve_nuc_gr_agg(model, config, agg_sol=None):
         model.var['t_nuc'][model.J] = ode.t
         model.prev['R'] = model.var['R'].copy()
         model.prev['P'] = model.var['P'].copy()
-        model.prev['grown'] = np.array(model.ddt['grown']).copy()
+        model.prev['Au0_gr'] = np.array(model.ddt['Au0_gr']).copy()
 
 
         paramavg = {
@@ -44,5 +44,4 @@ def solve_nuc_gr_agg(model, config, agg_sol=None):
         
         progress_bar.update(progress)
     progress_bar.close()
-    
     return data
