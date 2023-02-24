@@ -3,7 +3,7 @@ import os
 
 from dataclasses import dataclass
 from .ezplot import plot_defaults
-from .time_vs_concentration import time_vs_concentration
+from .line.time_vs_concentration import time_vs_concentration
 from typing import List
 import matplotlib.pyplot as plt
 

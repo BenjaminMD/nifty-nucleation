@@ -12,8 +12,8 @@ import numpy as np
 def main():
     config = read_config()
     model = NucleationGrowthModel(config)
-    
-    agg_sol = solve_agg(**config['rate_const'], **config['sim_params']).sol
+    model.K.k_agg
+    agg_sol = solve_agg(agg=model.K.k_agg, **config['sim_params']).sol
     results = solve_nuc_gr_agg(model, config, agg_sol)
     model.__init__(config)
     
