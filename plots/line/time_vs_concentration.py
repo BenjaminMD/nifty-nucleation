@@ -14,14 +14,15 @@ def time_vs_concentration(df, ax):
     df["Au0_nuc"] *= 10 ** -(expnt + 1)
 
     config = {
-        "Au+": {"label": r"[$\mathrm{Fe(OA)_3}$]", "linestyle": "-"},
+        "Au+": {"label": r"[Au$^+$]", "linestyle": "-"},
+        "B": {"label": r"[B]", "linestyle": "-.", "alpha"   : 0.5},
         #"amorphus": {"label": r"$[\mathrm{FeO_x^*}] \cdot$"+f'{f:1.0f}'+r"$^{-1}$", "linestyle": "-"},
-        "Au0": {"label": r"[$\mathrm{Fe(OA)_m}$]", "linestyle": "-"},
+        "Au0": {"label": r"[Au$^0$]", "linestyle": "-"},
         "Au0_nuc": {
-            "label": r"[$\mathrm{Fe(OA)_m^{nucleated}}]\cdot$" + f"1e{expnt+1:1.0f}" ,
+            "label": r"$\cdot$[Au$^0_\mathrm{Nucleation}$]$\cdot$" + f"1e{expnt+1:1.0f}" ,
             "linestyle": "-",
         },
-        "Au0_gr": {"label": r"$\sum$[$\mathrm{Fe(OA)_m^{grown}}$]", "linestyle": "-"},
+        "Au0_gr": {"label": r"$\sum$[Au$^0_\mathrm{Growth}$]", "linestyle": "-"},
     }
 
     configAu = {

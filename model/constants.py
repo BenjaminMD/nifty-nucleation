@@ -26,7 +26,5 @@ class Constants():
         self.k_gr = act['k_gr0'] * np.exp(- act['E_gr'] / (R * 1e-3 * self.T))
         self.Au_sat = act['k_sol0'] \
             * np.exp(- act['E_sol'] / (R * 1e-3 * self.T))
-        
-        print(self.__dict__)
 
 
