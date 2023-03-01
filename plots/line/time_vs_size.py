@@ -20,4 +20,6 @@ def time_vs_size(df, ax):
     # Calculate weighted variance of particle size distribution
     weighted_avg = np.average(R, axis=1, weights=P)
 
-    ax.plot(t, weighted_avg)
+    ax.set_xlabel('Time (s)')
+    ax.set_ylabel('Average particle size (nm)')
+    ax.plot(t, weighted_avg, label='ODE Average particle size')

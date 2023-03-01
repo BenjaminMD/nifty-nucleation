@@ -7,8 +7,9 @@ import numpy as np
 
 class NucleationGrowthModel(Setup):
     def __init__(self, config):
+        self.config = config
         self.J = 0
-        self.K = Constants(config)
+        self.K = Constants(self.config)
         super().__init__(config, self.K)
         self.c["Au+"] = config["conc"]["Au+"]
         self.c["B"] = config["conc"]["B"]
@@ -19,7 +20,7 @@ class NucleationGrowthModel(Setup):
         c["Au0_gr"] = y[5:-1]
 
         var = calc_nuc_rate(K, var, c)
-        var = calc_growth_rate(self.prev, K, self.J, c, var)
+        #var = calc_growth_rate(self.prev, K, self.J, c, var)
 
         # Model: calculation ---------------------------------------
         self.ddt["Au+"] = -K.k1 * c["Au+"] * c["B"]  # precursor react

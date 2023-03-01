@@ -10,19 +10,19 @@ description = "Simulation configuration"
 
 # Saturation constants
 [const]
-max_cohorts = 500
+max_cohorts = 100
 rho = 19.3e6 # g/m**3 Au bulk density
 M = 196.9 # g/mol Au molas mass
 eta = 0.55 #  mPa s visosity of tolune
 T = 295.0 # kelvin
-gamma = 245.0 # # mMm surface tension of tolune  
+gamma = 245.0 # mN/m surface tension of tolune  
 
 
 # Simulation parameters
 [sim_params]
-max_step = 1e6 # Maximum time step / s
+max_step = 1e2 # Maximum time step / s
 t0 = 0.0 # Start time / s
-t_bound = 3e4 # End time / s
+t_bound = 5e4 # End time / s
 rtol = 1e-04 # Relative tolerance, refer to scipy docs if you need to change it
 atol = 1e-09 # Absolute tolerance
 
@@ -32,7 +32,7 @@ atol = 1e-09 # Absolute tolerance
 E_sol = 1 # Activation energy for solubility / kJ/mol
 k_sol0 = 1e-5
 k_agg0 = 1e12 # Pre-exponential factor for aggregation reaction / s^-1
-E_agg = 100.0 # Activation energy for aggregation reaction / kJ/mol
+E_agg = 90.0 # Activation energy for aggregation reaction / kJ/mol
 k_gr0 = 5e4 # Pre-exponential factor for growth reaction / s^-1
 E_gr = 45.0 # Activation energy for growth reaction / kJ/mol
 k_10 = 3.0e5 # Pre-exponential factor for reaction rate / s^-1

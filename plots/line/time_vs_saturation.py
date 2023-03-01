@@ -6,13 +6,6 @@ import numpy as np
 
 
 def time_vs_saturation(df, ax):
-
-    Au0_gr_col = df.columns[df.columns.str.startswith('grown')]
-    df['grown'] = df[Au0_gr_col].sum(axis=1)
-    Au0_nuc_max = df['nucleated'].max()
-    expnt = np.floor(np.log10(abs(Au0_nuc_max)))
-    df['nucleated'] *= 10**-(expnt+1)
-
     config = {
     'S':
          {'label': r'$S$', 'linestyle': '--'},
