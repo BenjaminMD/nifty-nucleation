@@ -34,3 +34,26 @@ def plot_defaults(cols, rows, width_in_cm=15) -> Tuple[plt.Figure, GridSpec]:
     )
 
     return fig, grid_spec
+
+
+def ctwinx(ax_main, color, ylabel):
+    """Create a twin axis with a colored label.
+
+    Parameters:
+    -----------
+    ax_main : matplotlib axis object
+        The main axis to which the twin axis will be twinned.
+    color : str
+        The color of the label and tick marks.
+    label : str
+        The label to be displayed on the twin axis.
+
+    Returns:
+    --------
+    ax_r : matplotlib axis object
+        The twin axis with the specified label and color.
+    """
+    ax_r = ax_main.twinx()
+    ax_r.set_ylabel(ylabel, color=color)
+    ax_r.tick_params(axis='y', colors=color)
+    return ax_r
