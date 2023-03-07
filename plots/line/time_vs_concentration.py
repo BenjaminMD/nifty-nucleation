@@ -38,6 +38,5 @@ def time_vs_concentration(df, ax):
     for species, species_style in config.items():
         ax.plot(df.t, df[species], **species_style)
     ax.set_ylim(0, df["Au+"].max())
-    ax.legend(loc="center right")
 
     return ax

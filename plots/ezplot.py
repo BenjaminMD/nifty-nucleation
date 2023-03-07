@@ -2,6 +2,7 @@ from typing import Tuple  # type: ignore
 
 from matplotlib.gridspec import GridSpec  # type: ignore
 import matplotlib.pyplot as plt  # type: ignore
+import numpy as np  # type: ignore
 
 
 def plot_defaults(cols, rows, width_in_cm=15) -> Tuple[plt.Figure, GridSpec]:
@@ -34,6 +35,31 @@ def plot_defaults(cols, rows, width_in_cm=15) -> Tuple[plt.Figure, GridSpec]:
     )
 
     return fig, grid_spec
+
+
+def create_basic_plot(xlabel: str, ylabel: str, title=None):
+    fig, gs = plot_defaults(1, 1)
+    ax = fig.add_subplot(gs[0, 0])
+
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    if title:
+        ax.set_title(title)
+
+    return fig, ax
+
+
+def create_dual_plot(xlabel, y1label, y2label, y2color='red'):
+    fig, ax_main = create_basic_plot(xlabel, y1label)
+    ax_right = ctwinx(ax_main, y2color, y2label)
+    return fig, ax_main, ax_right
+
+
+def gather_legend(axs):
+    handles, labels = zip(*[ax.get_legend_handles_labels() for ax in axs])
+    handles = np.concatenate(handles)
+    labels = np.concatenate(labels)
+    return handles, labels
 
 
 def ctwinx(ax_main, color, ylabel):

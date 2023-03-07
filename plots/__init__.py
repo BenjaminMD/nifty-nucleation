@@ -6,4 +6,4 @@ from .line.time_vs_variance import time_vs_variance
 from .hist.number_vs_size  import number_vs_size
 from .scatter.number_vs_size_scatter import number_vs_size_scatter
 from .plot_manager import Plot, PlotManager
-from .ezplot import plot_defaults, ctwinx
+from .ezplot import plot_defaults, ctwinx, create_basic_plot, create_dual_plot, gather_legend
