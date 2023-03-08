@@ -1,6 +1,7 @@
 import numpy as np
 
-def time_vs_size(df, ax):
+
+def time_vs_size(df, ax, color):
     # Select columns corresponding to particle size R and number of particles P
     R_col = df.columns[df.columns.str.startswith('R')]
     P_col = df.columns[df.columns.str.startswith('P')]
@@ -22,4 +23,6 @@ def time_vs_size(df, ax):
 
     ax.set_xlabel('Time (s)')
     ax.set_ylabel('Average particle size (nm)')
-    ax.plot(t, weighted_avg, label='ODE Average particle size')
+    ax.plot(t, weighted_avg, label='Average particle size', color=color)
+
+    return ax

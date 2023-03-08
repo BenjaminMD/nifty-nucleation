@@ -27,4 +27,6 @@ def time_vs_variance(df, ax):
     weighted_var = sum_weighted_squared_deviation / np.sum(P)
 
     # Plot weighted variance of particle size distribution
-    ax.plot(t, weighted_var)
+    ax.plot(t, weighted_var, label='Variance of particle size distribution')
+
+    return ax

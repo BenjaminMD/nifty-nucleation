@@ -14,13 +14,13 @@ max_cohorts = 100
 rho = 19.3e6 # g/m**3 Au bulk density
 M = 196.9 # g/mol Au molas mass
 eta = 0.55 #  mPa s visosity of tolune
-T = 295.0 # kelvin
+T = 335.0 # kelvin
 gamma = 245.0 # mN/m surface tension of tolune  
 
 
 # Simulation parameters
 [sim_params]
-max_step = 1e2 # Maximum time step / s
+max_step = 1e4 # Maximum time step / s
 t0 = 0.0 # Start time / s
 t_bound = 5e4 # End time / s
 rtol = 1e-04 # Relative tolerance, refer to scipy docs if you need to change it

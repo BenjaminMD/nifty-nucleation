@@ -7,4 +7,6 @@ def number_vs_size_scatter(df, ax):
     P = P / P.sum()
     R = df[R_col].to_numpy() * 1e9
 
-    ax.scatter(R, P)
+    ax.scatter(R, P, label="Particle Size")
+
+    return ax

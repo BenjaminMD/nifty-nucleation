@@ -2,61 +2,62 @@ import datetime
 import os
 
 from dataclasses import dataclass
-from .ezplot import plot_defaults
-from .line.time_vs_concentration import time_vs_concentration
 from typing import List
 import matplotlib.pyplot as plt
+import pandas as pd
+
+from .ezplot import plot_defaults, ctwinx, create_basic_plot, create_dual_plot, gather_legend
+
+from .line.time_vs_concentration import time_vs_concentration
+from .line.time_vs_saturation import time_vs_saturation
+from .line.time_vs_variance import time_vs_variance
+from .line.time_vs_size import time_vs_size
+from .hist.number_vs_size import number_vs_size
+from .scatter.number_vs_size_scatter import number_vs_size_scatter
 
 
-@dataclass
 class Plot:
-    """A class for managing a plot with its properties."""
-    name: str
-    xlabel: str
-    ylabel: str
-    plot_func: callable = None
+    def __init__(self, df: pd.DataFrame):
+        self.df = df
 
-    labels = {
-            'time': '$t\,/\,$s',
-            'radius': '$r\,/\,$m',
-            'conc': '$c\,/\,$mol/m$^3$',
+        self.axlabels = {
+            'time': r'$t\,/\,$s',
+            'radius': r'$r\,/\,$m',
+            'conc': r'$c\,/\,$mol/m$^3$',
+            'sat': r'$S\,/\,$-',
         }
 
+    def particle_size_dist_plot(self):
+        fig, ax = create_basic_plot(
+            self.axlabels['radius'],
+            self.axlabels['conc'])
+        ax = number_vs_size(self.df, ax)
+        ax = number_vs_size_scatter(self.df, ax)
+        handles, labels = gather_legend([ax])
+        ax.legend(handles, labels, loc='upper left')
+        return fig, ax
 
-class PlotManager:
-    def __init__(self, folder, plots: List[Plot]):
-        self.folder = folder
-        self.plots = plots
+    def time_conc_sat_plot(self):
+        fig, ax_main, ax_right = create_dual_plot(
+            self.axlabels['time'],
+            self.axlabels['conc'],
+            self.axlabels['sat'],
+            'red')
+        ax_main = time_vs_concentration(self.df, ax_main)
+        ax_right = time_vs_saturation(self.df, ax_right, 'red')
+        handles, labels = gather_legend([ax_main, ax_right])
+        ax_main.legend(handles, labels, loc='upper right')
+        self.axs = [ax_main, ax_right]
+        return fig, [ax_main, ax_right]
 
-    def single_plot(self, df, plot: Plot):
-        """Plot the data using the plot function."""
-        if plot.plot_func is not None:
-            fig, grid_spec = plot_defaults(1, 1)
-            ax = fig.add_subplot(grid_spec[0, 0])
-            ax = plot.plot_func(df, ax)
-            ax.set_xlabel(plot.labels[plot.xlabel])
-            ax.set_ylabel(plot.labels[plot.ylabel])
-            return fig
-        else:
-            print(f"No plot function defined for {plot.name}.")
-
-    def save_plots(self, df):
-        for plot in self.plots:
-            fig = self.single_plot(df, plot)
-            if not fig:
-                continue
-            fig.savefig(f'./results/{self.folder}/{plot.name}.pdf')
-            fig.savefig(f'./results/{self.folder}/{plot.name}.png')
-
-    def __repr__(self):
-        repr_str = f"PlotManager with {len(self.plots)} plots:\n\n"
-        for plot in self.plots:
-            if plot.plot_func is not None:
-                repr_str += f"{plot.name}:\n"
-                repr_str += f"{' ' * 4}xlabel = {plot.xlabel}\n"
-                repr_str += f"{' ' * 4}ylabel = {plot.ylabel}\n"
-                repr_str += f"{' ' * 4}plot_func = {plot.plot_func.__name__}\n"
-                repr_str += "\n"
-        repr_str += f"Saving plots to folder: {self.folder}\n"
-        return repr_str
-
+    def time_size_dist_variance_plot(self):
+        fig, ax_main, ax_right = create_dual_plot(
+            self.axlabels['conc'],
+            self.axlabels['radius'],
+            self.axlabels['radius'],
+            'red')
+        ax_main = time_vs_variance(self.df, ax_main)
+        ax_right = time_vs_size(self.df, ax_right, 'red')
+        handles, labels = gather_legend([ax_main, ax_right])
+        ax_main.legend(handles, labels, loc='upper left')
+        return fig, ax_main
