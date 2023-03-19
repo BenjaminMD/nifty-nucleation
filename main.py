@@ -7,7 +7,6 @@ Author: Benjamin Fahl
 from model import NucleationGrowthModel, solve_agg, solve_nuc_gr_agg 
 from rsc.utils import read_config, save_results
 
-import numpy as np
 
 def main():
     config = read_config()
@@ -18,7 +17,6 @@ def main():
     model.__init__(config)
     
     save_results(results, model, config)
-
 
 if __name__ == "__main__":
     main()
