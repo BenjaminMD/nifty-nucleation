@@ -1,23 +1,17 @@
-import datetime
-import os
-
-from dataclasses import dataclass
-from typing import List
-import matplotlib.pyplot as plt
 import pandas as pd
 
-from .ezplot import plot_defaults, ctwinx, create_basic_plot, create_dual_plot, gather_legend
-
+from .ezplot import create_basic_plot, create_dual_plot, gather_legend
+from .hist.number_vs_size import number_vs_size
 from .line.time_vs_concentration import time_vs_concentration
 from .line.time_vs_saturation import time_vs_saturation
-from .line.time_vs_variance import time_vs_variance
 from .line.time_vs_size import time_vs_size
-from .hist.number_vs_size import number_vs_size
+from .line.time_vs_variance import time_vs_variance
 from .scatter.number_vs_size_scatter import number_vs_size_scatter
 
 
 class Plot:
     def __init__(self, df: pd.DataFrame):
+        self.axs = None
         self.df = df
 
         self.axlabels = {

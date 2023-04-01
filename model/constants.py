@@ -2,9 +2,10 @@ from scipy.constants import k, N_A, pi, R
 import numpy as np
 
 
-class Constants():
+class Constants:
     def __init__(self, config):
         self.k = k * 1e3
+        self.N_A = N_A * 1
         constants = config['const']
         self.rho = constants['rho']
         self.M = constants['M']
@@ -26,4 +27,3 @@ class Constants():
         self.k_gr = act['k_gr0'] * np.exp(- act['E_gr'] / (R * 1e-3 * self.T))
         self.Au_sat = act['k_sol0'] \
             * np.exp(- act['E_sol'] / (R * 1e-3 * self.T))
-
