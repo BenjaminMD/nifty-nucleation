@@ -22,7 +22,7 @@ gamma = 235.0 # mN/m surface tension of tolune
 [sim_params]
 max_step = 1e6 # Maximum time step / s
 t0 = 0.0 # Start time / s
-t_bound = 5e3 # End time / s
+t_bound = 5e4 # End time / s
 rtol = 1e-04 # Relative tolerance, refer to scipy docs if you need to change it
 atol = 1e-09 # Absolute tolerance
 
@@ -36,4 +36,4 @@ E_agg = 90.0 # Activation energy for aggregation reaction / kJ/mol
 k_gr0 = 5e4 # Pre-exponential factor for growth reaction / s^-1
 E_gr = 55.0 # Activation energy for growth reaction / kJ/mol
 k_10 = 3.0e5 # Pre-exponential factor for reaction rate / s^-1
-E_1 = 55.0 # Activation energy for reaction rate / kJ/mo
+E_1 = 45.0 # Activation energy for reaction rate / kJ/mo
