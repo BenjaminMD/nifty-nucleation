@@ -2,12 +2,10 @@ title = "DefaultParams"
 
 [metadata]
 description = "Simulation configuration"
-
 # Initial concentrations
 [conc]
 "Au+" = 1e+0 # "" because of the + symbol
 "B" = 1e+0
-
 # Saturation constants
 [const]
 max_cohorts = 100
@@ -15,12 +13,12 @@ rho = 19.3e6 # g/m**3 Au bulk density
 M = 196.9 # g/mol Au molas mass
 eta = 0.55 #  mPa s visosity of tolune
 T = 295.15# kelvin
-gamma = 235.0 # mN/m surface tension of tolune  
+gamma = 235.0 # mN/m surface tension of tolune
 
 
 # Simulation parameters
 [sim_params]
-max_step = 1e6 # Maximum time step / s
+max_step = 0.01 # Maximum time step / s
 t0 = 0.0 # Start time / s
 t_bound = 5e4 # End time / s
 rtol = 1e-04 # Relative tolerance, refer to scipy docs if you need to change it
@@ -34,6 +32,6 @@ k_sol0 = 1e-5
 k_agg0 = 1e12 # Pre-exponential factor for aggregation reaction / s^-1
 E_agg = 90.0 # Activation energy for aggregation reaction / kJ/mol
 k_gr0 = 5e4 # Pre-exponential factor for growth reaction / s^-1
-E_gr = 55.0 # Activation energy for growth reaction / kJ/mol
+E_gr = 35.0 # Activation energy for growth reaction / kJ/mol
 k_10 = 3.0e5 # Pre-exponential factor for reaction rate / s^-1
-E_1 = 45.0 # Activation energy for reaction rate / kJ/mo
+E_1 = 40.0 # Activation energy for reaction rate / kJ/mo
